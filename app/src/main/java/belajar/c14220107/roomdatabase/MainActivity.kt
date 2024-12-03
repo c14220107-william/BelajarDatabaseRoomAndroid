@@ -7,6 +7,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import belajar.c14220107.roomdatabase.database.adapterDaftar
+import belajar.c14220107.roomdatabase.database.daftarBelanja
 import belajar.c14220107.roomdatabase.database.daftarBelanjaDB
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.CoroutineScope
@@ -15,6 +19,11 @@ import kotlinx.coroutines.async
 
 class MainActivity : AppCompatActivity() {
     private lateinit var DB : daftarBelanjaDB
+
+    private lateinit var adapterDaftar: adapterDaftar
+
+    private var arrDaftar : MutableList<daftarBelanja> = mutableListOf()
+
 
 
 
@@ -40,7 +49,17 @@ class MainActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.Main).async {
             val daftarBelanja = DB.fundaftarBelanjaDAO().selectAll()
             Log.d("data ROOM", daftarBelanja.toString())
+            adapterDaftar.isiData(daftarBelanja)
 
         }
+        adapterDaftar = adapterDaftar(arrDaftar)
+
+        var _rvDaftar = findViewById<RecyclerView>(R.id.rvDaftar)
+
+        _rvDaftar.layoutManager = LinearLayoutManager(this)
+        _rvDaftar.adapter = adapterDaftar
+
+
+
     }
 }

@@ -1,5 +1,6 @@
 package belajar.c14220107.roomdatabase
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -50,6 +51,9 @@ class TambahDaftar : AppCompatActivity() {
                     )
                 )
             }
+            startActivity(
+                Intent(this, MainActivity::class.java)
+            )
         }
 
 
