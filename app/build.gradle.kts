@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "belajar.c14220107.roomdatabase"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "belajar.c14220107.roomdatabase"
